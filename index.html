@@ -11,6 +11,11 @@
 
 <title>Will You Be My Valentine? 💕</title>
 
+<!-- handwriting font for the love letter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+
 <style>
   /* ---------- COLOR THEME ---------- */
   :root {
@@ -30,10 +35,12 @@
     color: var(--text);
     text-align: center;
     overflow-x: hidden;
+    overflow-y: auto;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px 14px;
     background: linear-gradient(135deg, #fff5f7 0%, #ffe3ef 40%, #f3e0ff 100%);
     background-size: 200% 200%;
     animation: bgShift 14s ease infinite;
@@ -186,15 +193,17 @@
     display: none;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 28px;
+    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 24px 16px 40px;
     background: linear-gradient(135deg, #ffd1e3 0%, #ffe9c7 50%, #e7c9ff 100%);
   }
   .show-screen.show { display: flex; animation: fadeIn 0.8s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  /* each step inside the surprise */
-  .step { display: none; max-width: 760px; width: 100%; }
+  /* each step inside the surprise (auto margins center it, but let it scroll when tall) */
+  .step { display: none; max-width: 760px; width: 100%; margin: auto 0; }
   .step.active { display: block; animation: fadeIn 0.6s ease; }
 
   .step h2 {
@@ -240,9 +249,35 @@
   .plan li.in { animation: popIn 0.5s ease forwards; }
   @keyframes popIn { to { opacity: 1; transform: translateY(0); } }
 
-  /* memory strip on the win screen */
-  .win-photos { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
-  .win-photos .polaroid img, .win-photos .polaroid .fallback { width: 140px; height: 140px; }
+  /* memory strip on the win screen (2 per row on phones, fills the frame perfectly) */
+  .win-photos { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+  .win-photos .polaroid img,
+  .win-photos .polaroid .fallback {
+    width: min(38vw, 150px);
+    height: min(38vw, 150px);
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* the handwritten love letter */
+  .letter {
+    background: #fffdf3;
+    border-radius: 8px;
+    border-left: 4px solid #ffb3c8;
+    padding: 22px 24px 24px 30px;
+    max-width: 540px;
+    margin: 22px auto 0;
+    text-align: left;
+    transform: rotate(-1.2deg);
+    box-shadow: 0 16px 34px rgba(255,143,177,0.32);
+  }
+  .letter p {
+    font-family: 'Caveat', 'Segoe Script', cursive;
+    font-size: clamp(21px, 5.4vw, 30px);
+    line-height: 1.35;
+    color: #5b3a4a;
+    margin: 0;
+  }
 
   .next-btn {
     margin-top: 34px;
@@ -334,9 +369,11 @@
 
     <!-- STEP 4: memories -->
     <div class="step" id="step4">
-      <h2>My favourite moments 📸</h2>
-      <p id="memLine">…and so many more to come.</p>
+      <h2>Glimpses from our Last Kadi Mil ke Baitho 📸</h2>
       <div class="win-photos" id="winPhotos"></div>
+      <div class="letter">
+        <p id="memLine">…and so many more to come.</p>
+      </div>
       <button class="next-btn" data-next="5">One last thing… 💞</button>
     </div>
 
@@ -398,12 +435,13 @@
   document.getElementById('cdLine').innerHTML =
     `Counting every second until <strong>${CONFIG.dateText}</strong> with you…`;
   document.getElementById('memLine').innerHTML =
-    `You're my favourite hello and my hardest goodbye. 💕<br/>` +
-    `My favourite face, my favourite laugh, my favourite kind of trouble.<br/>` +
-    `My favourite place was never a place at all, it's wherever you are.<br/>` +
-    `Out of every favourite moment I've ever had, my favourites all have you in them.<br/>` +
-    `So… did I use the word <em>favourite</em> a few too many times? 😏<br/>` +
-    `That's only because you, ${CONFIG.herName}, are my favourite, my absolute favourite. 💖`;
+    `Okay ${CONFIG.herName}, real talk. 💕<br/>` +
+    `You're my favourite hello, my favourite headache, and my favourite reason to lose an argument on purpose.<br/>` +
+    `My favourite face (yes, even the grumpy one), my favourite laugh, my favourite "I'm not talking to you" that lasts a whole four minutes.<br/>` +
+    `Everybody's got a favourite place. Mine just happens to be wherever you're standing.<br/>` +
+    `I tried to pick one favourite memory of us... total scam, you're in all of them.<br/>` +
+    `So, quick question: did I just say <em>favourite</em> a suspicious number of times? 😏<br/>` +
+    `Yep. On purpose. Because you, ${CONFIG.herName}, are my favourite. Easily. Always. 💖`;
   document.getElementById('finalTitle').innerHTML = `I can't wait, ${CONFIG.herName}! 💞`;
   document.getElementById('finalMsg').innerHTML =
     `See you on <strong>${CONFIG.dateText}</strong>. Thank you for being my favourite person. ` +
