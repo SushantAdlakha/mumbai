@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- ============================================================= -->
-<!--  💖  EDIT YOUR NAMES & DETAILS IN THE <body> SECTION BELOW  💖 -->
-<!--      Look for the comments that say  "👉 EDIT THIS"           -->
+<!--  💖  EASIEST EDITS ARE IN THE  <script>  "CONFIG" BLOCK BELOW  -->
+<!--      (your names, the date, and your photo file names)         -->
 <!-- ============================================================= -->
 
 <title>Will You Be My Valentine? 💕</title>
 
 <style>
-  /* ---------- 1. COLOR THEME (change these to recolor everything) ---------- */
+  /* ---------- COLOR THEME ---------- */
   :root {
     --pink:      #ff8fb1;
     --pink-soft: #ffd1e3;
@@ -22,9 +22,7 @@
     --glow:      #ff9ecd;
   }
 
-  /* ---------- 2. BASE / BACKGROUND ---------- */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html, body { height: 100%; }
 
   body {
@@ -40,20 +38,19 @@
     background-size: 200% 200%;
     animation: bgShift 14s ease infinite;
   }
-
   @keyframes bgShift {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
 
-  /* ---------- 3. HERO CARD ---------- */
+  /* ---------- HERO CARD ---------- */
   .card {
     position: relative;
     z-index: 5;
-    max-width: 620px;
+    max-width: 640px;
     width: 90%;
-    padding: 48px 32px 56px;
+    padding: 44px 30px 52px;
     background: rgba(255, 255, 255, 0.55);
     border-radius: 40px;
     backdrop-filter: blur(10px);
@@ -61,15 +58,13 @@
                 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
     animation: floatCard 6s ease-in-out infinite;
   }
-
   @keyframes floatCard {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-12px); }
   }
 
-  /* The cute icon / picture */
   .hero-emoji {
-    font-size: 90px;
+    font-size: 84px;
     line-height: 1;
     display: inline-block;
     animation: beat 1.4s ease-in-out infinite;
@@ -81,37 +76,65 @@
     40%      { transform: scale(0.98); }
   }
 
-  /* 👉 To use a REAL PHOTO instead of the emoji, see the note in the <body>. */
-  .hero-photo {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 6px solid #fff;
-    box-shadow: 0 0 30px var(--glow);
-    margin-bottom: 8px;
-    animation: floatCard 5s ease-in-out infinite;
-  }
-
   h1 {
     font-size: clamp(28px, 6vw, 46px);
-    margin: 18px 0 10px;
+    margin: 16px 0 10px;
     background: linear-gradient(90deg, var(--pink), var(--purple));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 20px rgba(255, 158, 205, 0.4);
   }
-
   .subtitle {
     font-size: clamp(15px, 3vw, 19px);
-    color: var(--text);
     opacity: 0.85;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
     line-height: 1.6;
   }
 
-  /* ---------- 4. BUTTONS ---------- */
+  /* ---------- POLAROID PHOTO STRIP ---------- */
+  .photos {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .polaroid {
+    background: #fff;
+    padding: 8px 8px 26px;
+    border-radius: 6px;
+    box-shadow: 0 10px 22px rgba(255, 143, 177, 0.35);
+    transition: transform 0.3s ease;
+  }
+  .polaroid:nth-child(1) { transform: rotate(-6deg); }
+  .polaroid:nth-child(2) { transform: rotate(3deg) translateY(-6px); }
+  .polaroid:nth-child(3) { transform: rotate(7deg); }
+  .polaroid:hover { transform: rotate(0deg) scale(1.06); z-index: 6; }
+  .polaroid img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  /* shown if a photo file is missing, so the page never looks broken */
+  .polaroid .fallback {
+    width: 120px; height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px;
+    background: linear-gradient(135deg, #ffd1e3, #e7c9ff);
+    border-radius: 3px;
+  }
+  .polaroid .cap {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  /* ---------- BUTTONS ---------- */
   .buttons {
     display: flex;
     gap: 22px;
@@ -119,7 +142,6 @@
     align-items: center;
     flex-wrap: wrap;
   }
-
   .btn {
     font-size: 22px;
     font-weight: 700;
@@ -127,9 +149,8 @@
     cursor: pointer;
     padding: 16px 44px;
     border-radius: 50px;
-    transition: transform 0.15s ease, box-shadow 0.3s ease;
+    transition: transform 0.18s ease, box-shadow 0.3s ease;
   }
-
   .btn-yes {
     color: #fff;
     background: linear-gradient(135deg, #ff7eb3, #ff5e9c);
@@ -137,26 +158,20 @@
     animation: glowPulse 2s ease-in-out infinite;
   }
   .btn-yes:hover { transform: scale(1.12); }
-
   @keyframes glowPulse {
     0%, 100% { box-shadow: 0 8px 25px rgba(255, 94, 156, 0.5); }
     50%      { box-shadow: 0 8px 40px rgba(255, 94, 156, 0.9); }
   }
-
   .btn-no {
     color: var(--text);
     background: #fff;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  }
-  /* When the No button starts running away, it becomes fixed-position */
-  .btn-no.runaway {
-    position: fixed;
-    z-index: 50;
-    transition: top 0.25s ease, left 0.25s ease;
+    /* the gentle nudge is done with transform in JS */
+    transition: transform 0.2s ease;
   }
 
-  /* ---------- 5. WIN SCREEN (hidden until YES) ---------- */
-  .win {
+  /* ---------- FULL-SCREEN SURPRISE SEQUENCE ---------- */
+  .show-screen {
     position: fixed;
     inset: 0;
     z-index: 100;
@@ -164,89 +179,112 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 28px;
     background: linear-gradient(135deg, #ffd1e3 0%, #ffe9c7 50%, #e7c9ff 100%);
-    animation: fadeIn 0.8s ease;
   }
-  .win.show { display: flex; }
-
+  .show-screen.show { display: flex; animation: fadeIn 0.8s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  .win h2 {
-    font-size: clamp(40px, 11vw, 110px);
+  /* each step inside the surprise */
+  .step { display: none; max-width: 760px; width: 100%; }
+  .step.active { display: block; animation: fadeIn 0.6s ease; }
+
+  .step h2 {
+    font-size: clamp(34px, 9vw, 86px);
     background: linear-gradient(90deg, #ff5e9c, #b06bff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: beat 1.2s ease-in-out infinite;
+    line-height: 1.05;
   }
-  .win p {
-    font-size: clamp(18px, 4vw, 30px);
-    margin-top: 18px;
-    color: var(--text);
-    max-width: 700px;
-    line-height: 1.5;
-  }
-  .win .big-heart {
-    font-size: clamp(70px, 18vw, 160px);
+  .step p { font-size: clamp(17px, 3.5vw, 26px); margin-top: 16px; line-height: 1.5; }
+  .big-heart {
+    font-size: clamp(60px, 16vw, 140px);
     animation: beat 1.2s ease-in-out infinite;
     filter: drop-shadow(0 0 30px var(--glow));
   }
 
-  /* ---------- 6. FLOATING HEARTS + CONFETTI containers ---------- */
-  .floaty { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-  .win .floaty { z-index: 101; }
+  /* live countdown */
+  .countdown { display: flex; gap: 14px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
+  .count-box {
+    background: rgba(255,255,255,0.7);
+    border-radius: 20px;
+    padding: 14px 20px;
+    min-width: 84px;
+    box-shadow: 0 10px 24px rgba(255,143,177,0.3);
+  }
+  .count-box .num { font-size: clamp(28px, 7vw, 48px); font-weight: 800; color: #ff5e9c; }
+  .count-box .lbl { font-size: 13px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.7; }
 
+  /* date plan list, items pop in one by one */
+  .plan { list-style: none; margin: 24px auto 0; max-width: 480px; text-align: left; }
+  .plan li {
+    background: rgba(255,255,255,0.75);
+    margin: 12px 0;
+    padding: 16px 20px;
+    border-radius: 18px;
+    font-size: clamp(16px, 3vw, 22px);
+    box-shadow: 0 8px 20px rgba(255,143,177,0.25);
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .plan li.in { animation: popIn 0.5s ease forwards; }
+  @keyframes popIn { to { opacity: 1; transform: translateY(0); } }
+
+  /* memory strip on the win screen */
+  .win-photos { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .win-photos .polaroid img, .win-photos .polaroid .fallback { width: 140px; height: 140px; }
+
+  .next-btn {
+    margin-top: 34px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #ff7eb3, #b06bff);
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    cursor: pointer;
+    box-shadow: 0 10px 28px rgba(176,107,255,0.45);
+    transition: transform 0.18s ease;
+  }
+  .next-btn:hover { transform: scale(1.08); }
+
+  /* ---------- FLOATING HEARTS + CONFETTI ---------- */
+  .floaty { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+  .show-screen .floaty { z-index: 101; }
   .heart {
     position: absolute;
     bottom: -60px;
-    font-size: 28px;
     animation: rise linear forwards;
   }
-  @keyframes rise {
-    to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-  }
-
+  @keyframes rise { to { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
   .confetti {
     position: absolute;
     top: -20px;
-    width: 10px;
-    height: 16px;
+    width: 10px; height: 16px;
     border-radius: 2px;
     animation: fall linear forwards;
   }
-  @keyframes fall {
-    to { transform: translateY(110vh) rotate(720deg); opacity: 0.9; }
-  }
+  @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0.9; } }
 </style>
 </head>
 
 <body>
 
-  <!-- soft floating hearts in the background of the whole page -->
+  <!-- background hearts for the whole page -->
   <div class="floaty" id="bgHearts"></div>
 
   <!-- =================== HERO CARD =================== -->
   <div class="card" id="card">
-
-    <!-- 👉 EDIT THIS: the cute icon. Keep the emoji, OR use a photo (see note). -->
     <div class="hero-emoji">🧸💖</div>
 
-    <!--
-      📸  WANT TO USE A REAL PHOTO INSTEAD?
-      1) Put your photo file (e.g. us.jpg) in the SAME folder as this file.
-      2) Delete the <div class="hero-emoji">...</div> line above.
-      3) Paste this instead:   <img class="hero-photo" src="us.jpg" alt="us" />
-    -->
+    <h1 id="title">Will You Meet Me on 19th June? 💕</h1>
+    <p class="subtitle" id="subtitle">Loading…</p>
 
-    <!-- 👉 EDIT THIS: the main title -->
-    <h1>Will You Meet Me on 19th June? 💕</h1>
-
-    <!-- 👉 EDIT THIS: the romantic subtitle -->
-    <p class="subtitle">
-      Hey [Her Name] 🌷 — from the very first day, you've made my world brighter.
-      So I have just one little question for you…
-    </p>
+    <!-- Your photos from your last meet appear here automatically -->
+    <div class="photos" id="heroPhotos"></div>
 
     <div class="buttons" id="buttons">
       <button class="btn btn-yes" id="yesBtn">YES 🥰</button>
@@ -254,49 +292,138 @@
     </div>
   </div>
 
-  <!-- =================== WIN SCREEN =================== -->
-  <div class="win" id="win">
+  <!-- =================== SURPRISE SEQUENCE (after YES) =================== -->
+  <div class="show-screen" id="show">
     <div class="floaty" id="winHearts"></div>
-    <div class="big-heart">💖</div>
 
-    <!-- 👉 EDIT THIS: the big celebration message -->
-    <h2>YAYYY! 🎉</h2>
-    <p>
-      You just made me the happiest person alive! 💞<br />
-      See you on <strong>19th June</strong> — I can't wait, [Her Name]. 😘<br />
-      <em>— [Your Name]</em>
-    </p>
+    <!-- STEP 1: celebration -->
+    <div class="step active" id="step1">
+      <div class="big-heart">💖</div>
+      <h2>YAYYY! 🎉</h2>
+      <p id="winLine">You said YES!</p>
+      <button class="next-btn" data-next="2">There's more… 💌</button>
+    </div>
+
+    <!-- STEP 2: live countdown -->
+    <div class="step" id="step2">
+      <h2>The countdown is ON! ⏳</h2>
+      <p id="cdLine">Until our date…</p>
+      <div class="countdown" id="countdown"></div>
+      <button class="next-btn" data-next="3">Aww, what's the plan? 🌷</button>
+    </div>
+
+    <!-- STEP 3: the date plan -->
+    <div class="step" id="step3">
+      <h2>Our little date plan 💕</h2>
+      <ul class="plan" id="plan"></ul>
+      <button class="next-btn" data-next="4">I love it! 📸</button>
+    </div>
+
+    <!-- STEP 4: memories -->
+    <div class="step" id="step4">
+      <h2>My favourite moments 📸</h2>
+      <p id="memLine">…and so many more to come.</p>
+      <div class="win-photos" id="winPhotos"></div>
+      <button class="next-btn" data-next="5">One last thing… 💞</button>
+    </div>
+
+    <!-- STEP 5: final message -->
+    <div class="step" id="step5">
+      <div class="big-heart">💞</div>
+      <h2 id="finalTitle">I can't wait!</h2>
+      <p id="finalMsg"></p>
+    </div>
   </div>
 
 <script>
   /* ===================================================================
-     ALL THE INTERACTIVE MAGIC LIVES HERE — no need to edit this part.
+     ★★★  CONFIG  —  THIS IS THE ONLY PART YOU NEED TO EDIT  ★★★
+     =================================================================== */
+  const CONFIG = {
+    yourName: "[Your Name]",     // 👈 your name
+    herName:  "[Her Name]",      // 👈 her name
+
+    dateText: "19th June",        // 👈 how the date reads on screen
+    dateISO:  "2026-06-19T19:00", // 👈 date+time for the countdown (YYYY-MM-DDThh:mm)
+
+    // 👇 Your photos from your last meet.
+    //    Upload photos to the repo named EXACTLY like this (or change the names here).
+    //    If a photo is missing, a cute heart placeholder shows instead — never broken.
+    photos: [
+      { file: "photo1.jpg", caption: "us 💗" },
+      { file: "photo2.jpg", caption: "last meet 🌸" },
+      { file: "photo3.jpg", caption: "my favourite 😍" }
+    ],
+
+    // 👇 The fun "date plan" list (add/remove lines freely)
+    datePlan: [
+      "I pick you up looking my best (I'll try 😅)",
+      "Good food + your favourite dessert 🍰",
+      "A long walk and even longer talks 🌙",
+      "A little surprise I'm not telling you yet 🎁"
+    ]
+  };
+
+  /* ===================================================================
+     Everything below makes the magic work — no need to touch it.
      =================================================================== */
 
-  const noBtn   = document.getElementById('noBtn');
-  const yesBtn  = document.getElementById('yesBtn');
-  const card    = document.getElementById('card');
-  const win     = document.getElementById('win');
+  // ---- fill in the words from CONFIG ----
+  document.getElementById('title').innerHTML =
+    `Will You Meet Me on ${CONFIG.dateText}? 💕`;
+  document.getElementById('subtitle').innerHTML =
+    `Hey ${CONFIG.herName} 🌷 — ever since I met you, every day feels softer and brighter. ` +
+    `So ${CONFIG.yourName} has just one little question for you…`;
+  document.getElementById('winLine').innerHTML =
+    `${CONFIG.herName}, you just made ${CONFIG.yourName} the happiest person alive! 💞`;
+  document.getElementById('cdLine').innerHTML =
+    `Counting every second until <strong>${CONFIG.dateText}</strong> with you…`;
+  document.getElementById('memLine').innerHTML =
+    `A few favourites with you, ${CONFIG.herName} — and so many more to come.`;
+  document.getElementById('finalTitle').innerHTML = `I can't wait, ${CONFIG.herName}! 💞`;
+  document.getElementById('finalMsg').innerHTML =
+    `See you on <strong>${CONFIG.dateText}</strong>. Thank you for being my favourite person. ` +
+    `<br/><em>— ${CONFIG.yourName}</em>`;
 
-  /* ---------- The runaway "No" button ---------- */
-  function dodge() {
-    noBtn.classList.add('runaway');
-    const pad = 20;
-    const w = noBtn.offsetWidth;
-    const h = noBtn.offsetHeight;
-    const maxX = window.innerWidth  - w - pad;
-    const maxY = window.innerHeight - h - pad;
-    const x = Math.random() * maxX + pad / 2;
-    const y = Math.random() * maxY + pad / 2;
-    noBtn.style.left = x + 'px';
-    noBtn.style.top  = y + 'px';
+  // ---- build a polaroid photo (with safe fallback) ----
+  function makePolaroid(p) {
+    const wrap = document.createElement('div');
+    wrap.className = 'polaroid';
+    const img = document.createElement('img');
+    img.src = p.file;
+    img.alt = p.caption;
+    img.onerror = function () {
+      const fb = document.createElement('div');
+      fb.className = 'fallback';
+      fb.textContent = '💖';
+      wrap.replaceChild(fb, img);
+    };
+    const cap = document.createElement('span');
+    cap.className = 'cap';
+    cap.textContent = p.caption;
+    wrap.appendChild(img);
+    wrap.appendChild(cap);
+    return wrap;
   }
-  // Run away on hover AND on touch/click (covers phones & computers)
-  noBtn.addEventListener('mouseover', dodge);
-  noBtn.addEventListener('click', function (e) { e.preventDefault(); dodge(); });
-  noBtn.addEventListener('touchstart', function (e) { e.preventDefault(); dodge(); }, { passive: false });
+  const heroPhotos = document.getElementById('heroPhotos');
+  const winPhotos  = document.getElementById('winPhotos');
+  CONFIG.photos.forEach(p => {
+    heroPhotos.appendChild(makePolaroid(p));
+    winPhotos.appendChild(makePolaroid(p));
+  });
 
-  /* ---------- Gentle background hearts (always floating) ---------- */
+  // ---- the GENTLE "No" button (nudges nearby, doesn't fly away) ----
+  const noBtn = document.getElementById('noBtn');
+  function nudge() {
+    const dx = (Math.random() * 120 - 60);  // -60 .. +60 px sideways
+    const dy = (Math.random() * 60 - 30);   // -30 .. +30 px up/down
+    noBtn.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx/8}deg)`;
+  }
+  noBtn.addEventListener('mouseover', nudge);
+  noBtn.addEventListener('click', function (e) { e.preventDefault(); nudge(); });
+  noBtn.addEventListener('touchstart', function (e) { e.preventDefault(); nudge(); }, { passive: false });
+
+  // ---- floating hearts ----
   function spawnHeart(container, emojis) {
     const h = document.createElement('div');
     h.className = 'heart';
@@ -311,7 +438,7 @@
   }
   setInterval(() => spawnHeart(document.getElementById('bgHearts'), ['💗','💕','🌸','💞']), 700);
 
-  /* ---------- Confetti for the win screen ---------- */
+  // ---- confetti ----
   function spawnConfetti(container) {
     const colors = ['#ff7eb3','#ff5e9c','#b06bff','#ffd86b','#7ad7ff','#ff9ecd'];
     const c = document.createElement('div');
@@ -324,17 +451,55 @@
     setTimeout(() => c.remove(), dur * 1000);
   }
 
-  /* ---------- YES! Celebrate! ---------- */
-  yesBtn.addEventListener('click', function () {
-    card.style.display = 'none';      // hide the question + buttons
-    noBtn.style.display = 'none';
-    win.classList.add('show');        // reveal the celebration
+  // ---- live countdown to the date ----
+  function startCountdown() {
+    const box = document.getElementById('countdown');
+    const target = new Date(CONFIG.dateISO).getTime();
+    function tick() {
+      const now = Date.now();
+      let diff = Math.max(0, target - now);
+      const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+      const h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+      const m = Math.floor(diff / 60000);    diff -= m * 60000;
+      const s = Math.floor(diff / 1000);
+      const cell = (n, l) => `<div class="count-box"><div class="num">${n}</div><div class="lbl">${l}</div></div>`;
+      box.innerHTML = cell(d,'days') + cell(h,'hrs') + cell(m,'min') + cell(s,'sec');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
 
-    const winHearts = document.getElementById('winHearts');
-    // big burst of confetti + extra hearts
-    for (let i = 0; i < 80; i++) setTimeout(() => spawnConfetti(winHearts), i * 60);
-    setInterval(() => spawnConfetti(winHearts), 120);
-    setInterval(() => spawnHeart(winHearts, ['💖','💘','💝','💗','😍']), 250);
+  // ---- reveal the date-plan items one by one ----
+  function buildPlan() {
+    const ul = document.getElementById('plan');
+    CONFIG.datePlan.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.textContent = '💗  ' + item;
+      ul.appendChild(li);
+      setTimeout(() => li.classList.add('in'), 300 + i * 500);
+    });
+  }
+  let planBuilt = false;
+
+  // ---- step navigation ----
+  function goToStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + n).classList.add('active');
+    if (n === 2) startCountdown();
+    if (n === 3 && !planBuilt) { buildPlan(); planBuilt = true; }
+  }
+  document.querySelectorAll('.next-btn').forEach(b => {
+    b.addEventListener('click', () => goToStep(b.dataset.next));
+  });
+
+  // ---- YES! start the whole celebration ----
+  document.getElementById('yesBtn').addEventListener('click', function () {
+    document.getElementById('card').style.display = 'none';
+    document.getElementById('show').classList.add('show');
+    const wh = document.getElementById('winHearts');
+    for (let i = 0; i < 90; i++) setTimeout(() => spawnConfetti(wh), i * 55);
+    setInterval(() => spawnConfetti(wh), 130);
+    setInterval(() => spawnHeart(wh, ['💖','💘','💝','💗','😍']), 240);
   });
 </script>
 </body>
