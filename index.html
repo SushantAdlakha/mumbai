@@ -93,7 +93,8 @@
 
   h1 {
     font-size: clamp(28px, 6vw, 46px);
-    margin: 16px 0 10px;
+    font-weight: 800;
+    margin: 6px 0 30px;
     background: linear-gradient(90deg, var(--pink), var(--purple));
     -webkit-background-clip: text;
     background-clip: text;
@@ -103,7 +104,7 @@
   .subtitle {
     font-size: clamp(15px, 3vw, 19px);
     opacity: 0.85;
-    margin-bottom: 28px;
+    margin: 14px 0 6px;
     line-height: 1.6;
   }
 
@@ -331,8 +332,8 @@
          alt="cute Squirtle"
          onerror="this.outerHTML='&lt;div class=\'hero-emoji\'&gt;🐢💙&lt;/div&gt;'" />
 
-    <h1 id="title">Will You Meet Me on 19th June? 💕</h1>
     <p class="subtitle" id="subtitle">Loading…</p>
+    <h1 id="title">Will You Meet Me on 19th June? 💕</h1>
 
     <div class="buttons" id="buttons">
       <button class="btn btn-yes" id="yesBtn">YES 🥰</button>
@@ -478,9 +479,10 @@
   // ---- the GENTLE "No" button (nudges nearby, doesn't fly away) ----
   const noBtn = document.getElementById('noBtn');
   function nudge() {
-    const dx = (Math.random() * 120 - 60);  // -60 .. +60 px sideways
-    const dy = (Math.random() * 60 - 30);   // -30 .. +30 px up/down
-    noBtn.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx/8}deg)`;
+    // bigger, livelier jump (but still stays nearby, not across the whole screen)
+    const dx = (Math.random() * 360 - 180);  // -180 .. +180 px sideways
+    const dy = (Math.random() * 200 - 100);  // -100 .. +100 px up/down
+    noBtn.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx/6}deg)`;
   }
   noBtn.addEventListener('mouseover', nudge);
   noBtn.addEventListener('click', function (e) { e.preventDefault(); nudge(); });
