@@ -276,15 +276,15 @@
   <!-- background hearts for the whole page -->
   <div class="floaty" id="bgHearts"></div>
 
+  <!-- background song (starts when she taps YES) -->
+  <audio id="song" loop preload="auto"></audio>
+
   <!-- =================== HERO CARD =================== -->
   <div class="card" id="card">
     <div class="hero-emoji">🧸💖</div>
 
     <h1 id="title">Will You Meet Me on 19th June? 💕</h1>
     <p class="subtitle" id="subtitle">Loading…</p>
-
-    <!-- Your photos from your last meet appear here automatically -->
-    <div class="photos" id="heroPhotos"></div>
 
     <div class="buttons" id="buttons">
       <button class="btn btn-yes" id="yesBtn">YES 🥰</button>
@@ -346,6 +346,11 @@
     dateText: "19th June",        // 👈 how the date reads on screen
     dateISO:  "2026-06-19T19:00", // 👈 date+time for the countdown (YYYY-MM-DDThh:mm)
 
+    // 👇 Background song that starts when she taps YES.
+    //    Upload an mp3 to the repo named EXACTLY "song.mp3" (or change the name here).
+    //    Leave it as is and it simply stays silent if no file is uploaded.
+    song: "song.mp3",
+
     // 👇 Your photos from your last meet.
     //    Upload photos to the repo named EXACTLY like this (or change the names here).
     //    If a photo is missing, a cute heart placeholder shows instead — never broken.
@@ -405,12 +410,13 @@
     wrap.appendChild(cap);
     return wrap;
   }
-  const heroPhotos = document.getElementById('heroPhotos');
-  const winPhotos  = document.getElementById('winPhotos');
-  CONFIG.photos.forEach(p => {
-    heroPhotos.appendChild(makePolaroid(p));
-    winPhotos.appendChild(makePolaroid(p));
-  });
+  // photos appear ONLY after she says YES (on the memories step)
+  const winPhotos = document.getElementById('winPhotos');
+  CONFIG.photos.forEach(p => winPhotos.appendChild(makePolaroid(p)));
+
+  // get the background song ready
+  const song = document.getElementById('song');
+  if (CONFIG.song) song.src = CONFIG.song;
 
   // ---- the GENTLE "No" button (nudges nearby, doesn't fly away) ----
   const noBtn = document.getElementById('noBtn');
@@ -496,6 +502,8 @@
   document.getElementById('yesBtn').addEventListener('click', function () {
     document.getElementById('card').style.display = 'none';
     document.getElementById('show').classList.add('show');
+    // start the song (allowed because it follows her tap)
+    if (song && song.src) { song.volume = 0.6; song.play().catch(function(){}); }
     const wh = document.getElementById('winHearts');
     for (let i = 0; i < 90; i++) setTimeout(() => spawnConfetti(wh), i * 55);
     setInterval(() => spawnConfetti(wh), 130);
