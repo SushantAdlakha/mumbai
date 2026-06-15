@@ -70,6 +70,14 @@
     animation: beat 1.4s ease-in-out infinite;
     filter: drop-shadow(0 0 18px var(--glow));
   }
+  .hero-pic {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: inline-block;
+    animation: floatCard 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 22px var(--glow));
+  }
   @keyframes beat {
     0%, 100% { transform: scale(1); }
     25%      { transform: scale(1.15); }
@@ -281,7 +289,12 @@
 
   <!-- =================== HERO CARD =================== -->
   <div class="card" id="card">
-    <div class="hero-emoji">🧸💖</div>
+    <!-- Cute Squirtle! To use your own image instead, upload it (e.g. squirtle.png)
+         and change the src below to  src="squirtle.png" -->
+    <img class="hero-pic"
+         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+         alt="cute Squirtle"
+         onerror="this.outerHTML='&lt;div class=\'hero-emoji\'&gt;🐢💙&lt;/div&gt;'" />
 
     <h1 id="title">Will You Meet Me on 19th June? 💕</h1>
     <p class="subtitle" id="subtitle">Loading…</p>
