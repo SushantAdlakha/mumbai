@@ -350,7 +350,7 @@
 
 <script>
   /* ===================================================================
-     ★★★  CONFIG  —  THIS IS THE ONLY PART YOU NEED TO EDIT  ★★★
+     ★★★  CONFIG  ::  THIS IS THE ONLY PART YOU NEED TO EDIT  ★★★
      =================================================================== */
   const CONFIG = {
     yourName: "Sushant",         // 👈 your name
@@ -366,10 +366,10 @@
 
     // 👇 Your photos from your last meet.
     //    Upload photos to the repo named EXACTLY like this (or change the names here).
-    //    If a photo is missing, a cute heart placeholder shows instead — never broken.
+    //    If a photo is missing, a cute heart placeholder shows instead, never broken.
     photos: [
-      { file: "photo1.jpg", caption: "my favourite 😘" },
-      { file: "photo2.jpg", caption: "my favourite 🥰" },
+      { file: "photo1.jpg", caption: "first pic with my favourite 😘" },
+      { file: "photo2.jpg", caption: "second pic with my favourite 🥰" },
       { file: "photo3.jpg", caption: "favourite date night with my favourite person 🌙" },
       { file: "photo4.jpg", caption: "being bullied by my favourite person (I LOVE IT) 😝" }
     ],
@@ -384,14 +384,14 @@
   };
 
   /* ===================================================================
-     Everything below makes the magic work — no need to touch it.
+     Everything below makes the magic work, no need to touch it.
      =================================================================== */
 
   // ---- fill in the words from CONFIG ----
   document.getElementById('title').innerHTML =
     `Will You Meet Me on ${CONFIG.dateText}? 💕`;
   document.getElementById('subtitle').innerHTML =
-    `Hey ${CONFIG.herName} 🌷 — ever since I met you, every day feels softer and brighter. ` +
+    `Hey ${CONFIG.herName} 🌷, ever since I met you, every day feels softer and brighter. ` +
     `So ${CONFIG.yourName} has just one little question for you…`;
   document.getElementById('winLine').innerHTML =
     `${CONFIG.herName}, you just made ${CONFIG.yourName} the happiest person alive! 💞`;
@@ -400,14 +400,14 @@
   document.getElementById('memLine').innerHTML =
     `You're my favourite hello and my hardest goodbye. 💕<br/>` +
     `My favourite face, my favourite laugh, my favourite kind of trouble.<br/>` +
-    `My favourite place was never a place at all — it's wherever you are.<br/>` +
+    `My favourite place was never a place at all, it's wherever you are.<br/>` +
     `Out of every favourite moment I've ever had, my favourites all have you in them.<br/>` +
     `So… did I use the word <em>favourite</em> a few too many times? 😏<br/>` +
-    `That's only because you, ${CONFIG.herName}, are my favourite — my absolute favourite. 💖`;
+    `That's only because you, ${CONFIG.herName}, are my favourite, my absolute favourite. 💖`;
   document.getElementById('finalTitle').innerHTML = `I can't wait, ${CONFIG.herName}! 💞`;
   document.getElementById('finalMsg').innerHTML =
     `See you on <strong>${CONFIG.dateText}</strong>. Thank you for being my favourite person. ` +
-    `<br/><em>— ${CONFIG.yourName}</em>`;
+    `<br/><em>Love, ${CONFIG.yourName}</em>`;
 
   // ---- build a polaroid photo (with safe fallback) ----
   function makePolaroid(p) {
