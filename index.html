@@ -260,6 +260,18 @@
     object-position: center;
   }
 
+  /* her dance video on the final step (center stage) */
+  .dance-video {
+    display: block;
+    margin: 18px auto;
+    width: min(94%, 420px);
+    max-height: 68vh;
+    border-radius: 22px;
+    background: #000;
+    box-shadow: 0 18px 44px rgba(255,143,177,0.5);
+  }
+  #danceCap { margin-top: 10px; opacity: 0.9; }
+
   /* the handwritten love letter */
   .letter {
     background: #fffdf3;
@@ -380,8 +392,9 @@
 
     <!-- STEP 5: final message -->
     <div class="step" id="step5">
-      <div class="big-heart">💞</div>
       <h2 id="finalTitle">I can't wait!</h2>
+      <p id="danceCap">Hope you're dancing like this when we meet 💃</p>
+      <video id="danceVideo" class="dance-video" playsinline controls preload="auto"></video>
       <p id="finalMsg"></p>
     </div>
   </div>
@@ -401,6 +414,11 @@
     //    Upload an mp3 to the repo named EXACTLY "song.mp3" (or change the name here).
     //    Leave it as is and it simply stays silent if no file is uploaded.
     song: "song.mp3",
+
+    // 👇 Her dancing video, shown on the FINAL step.
+    //    The song stops and this video plays center-stage with its OWN sound.
+    //    Upload a video named EXACTLY "dance.mp4". If none is uploaded, it is simply skipped.
+    video: "dance.mp4",
 
     // 👇 Your photos from your last meet.
     //    Upload photos to the repo named EXACTLY like this (or change the names here).
@@ -476,6 +494,14 @@
   const song = document.getElementById('song');
   if (CONFIG.song) song.src = CONFIG.song;
 
+  // get her dance video ready (hidden gracefully if no file uploaded yet)
+  const video = document.getElementById('danceVideo');
+  if (CONFIG.video) video.src = CONFIG.video;
+  video.addEventListener('error', function () {
+    video.style.display = 'none';
+    document.getElementById('danceCap').style.display = 'none';
+  });
+
   // ---- the GENTLE "No" button (nudges nearby, doesn't fly away) ----
   const noBtn = document.getElementById('noBtn');
   function nudge() {
@@ -548,10 +574,20 @@
 
   // ---- step navigation ----
   function goToStep(n) {
+    n = Number(n);
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById('step' + n).classList.add('active');
     if (n === 2) startCountdown();
     if (n === 3 && !planBuilt) { buildPlan(); planBuilt = true; }
+    if (n === 5) {
+      // stop the background song and let her dance video take center stage with its own sound
+      if (song) { try { song.pause(); } catch (e) {} }
+      if (video && video.getAttribute('src') && video.style.display !== 'none') {
+        video.muted = false;
+        video.volume = 1;
+        video.play().catch(function () {});
+      }
+    }
   }
   document.querySelectorAll('.next-btn').forEach(b => {
     b.addEventListener('click', () => goToStep(b.dataset.next));
