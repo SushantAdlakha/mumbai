@@ -369,9 +369,9 @@
     //    If a photo is missing, a cute heart placeholder shows instead — never broken.
     photos: [
       { file: "photo1.jpg", caption: "my favourite 😘" },
-      { file: "photo2.jpg", caption: "just us 🥰" },
-      { file: "photo3.jpg", caption: "date night 🌙" },
-      { file: "photo4.jpg", caption: "being silly 😝" }
+      { file: "photo2.jpg", caption: "my favourite 🥰" },
+      { file: "photo3.jpg", caption: "favourite date night with my favourite person 🌙" },
+      { file: "photo4.jpg", caption: "being bullied by my favourite person (I LOVE IT) 😝" }
     ],
 
     // 👇 The fun "date plan" list (add/remove lines freely)
@@ -398,7 +398,12 @@
   document.getElementById('cdLine').innerHTML =
     `Counting every second until <strong>${CONFIG.dateText}</strong> with you…`;
   document.getElementById('memLine').innerHTML =
-    `A few favourites with you, ${CONFIG.herName} — and so many more to come.`;
+    `You're my favourite hello and my hardest goodbye. 💕<br/>` +
+    `My favourite face, my favourite laugh, my favourite kind of trouble.<br/>` +
+    `My favourite place was never a place at all — it's wherever you are.<br/>` +
+    `Out of every favourite moment I've ever had, my favourites all have you in them.<br/>` +
+    `So… did I use the word <em>favourite</em> a few too many times? 😏<br/>` +
+    `That's only because you, ${CONFIG.herName}, are my favourite — my absolute favourite. 💖`;
   document.getElementById('finalTitle').innerHTML = `I can't wait, ${CONFIG.herName}! 💞`;
   document.getElementById('finalMsg').innerHTML =
     `See you on <strong>${CONFIG.dateText}</strong>. Thank you for being my favourite person. ` +
