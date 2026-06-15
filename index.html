@@ -260,16 +260,36 @@
     object-position: center;
   }
 
-  /* her dance video on the final step (center stage) */
+  /* her dance video on the final step (center stage, framed by our photos) */
+  .video-stage {
+    position: relative;
+    display: inline-block;
+    margin: 26px 0 8px;
+    max-width: 94%;
+  }
   .dance-video {
     display: block;
-    margin: 18px auto;
-    width: min(94%, 420px);
-    max-height: 68vh;
+    width: min(86vw, 380px);
+    max-height: 64vh;
     border-radius: 22px;
     background: #000;
     box-shadow: 0 18px 44px rgba(255,143,177,0.5);
   }
+  /* the photos that frame the video at each corner */
+  .frame-pic {
+    position: absolute;
+    width: clamp(54px, 17vw, 96px);
+    height: clamp(54px, 17vw, 96px);
+    object-fit: cover;
+    border: 4px solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 18px rgba(255,143,177,0.5);
+    z-index: 2;
+  }
+  .fp1 { top: -26px; left: -26px;  transform: rotate(-10deg); }
+  .fp2 { top: -26px; right: -26px; transform: rotate(8deg); }
+  .fp3 { bottom: -26px; left: -26px;  transform: rotate(7deg); }
+  .fp4 { bottom: -26px; right: -26px; transform: rotate(-9deg); }
   #danceCap { margin-top: 10px; opacity: 0.9; }
 
   /* the handwritten love letter */
@@ -394,7 +414,13 @@
     <div class="step" id="step5">
       <h2 id="finalTitle">I can't wait!</h2>
       <p id="danceCap">Hope you're dancing like this when we meet 💃</p>
-      <video id="danceVideo" class="dance-video" playsinline controls preload="auto"></video>
+      <div class="video-stage">
+        <img class="frame-pic fp1" src="photo1.jpg" alt="" onerror="this.style.display='none'" />
+        <img class="frame-pic fp2" src="photo2.jpg" alt="" onerror="this.style.display='none'" />
+        <img class="frame-pic fp3" src="photo3.jpg" alt="" onerror="this.style.display='none'" />
+        <img class="frame-pic fp4" src="photo4.jpg" alt="" onerror="this.style.display='none'" />
+        <video id="danceVideo" class="dance-video" playsinline controls preload="auto"></video>
+      </div>
       <p id="finalMsg"></p>
     </div>
   </div>
